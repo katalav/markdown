@@ -4,6 +4,20 @@ print('Hello World')
 
 print('Ja tämän sovelluksen koodisi Jantteri Jäynä')
 
+# ESIMERKKEJÄ MUUTTUJIEN KÄYTÖSTÄ 
+#================================
+
+# YKSINKERTAISET MUUTTUJAT
+#--------------------------
+
+
+etunimi = 'Jonne' # merkkijono string (str)
+ika = 16 # kokonaisluku integer (int)
+ytoaineiden_keskiarvo = 2.5 # Liukuluku floating point number (float)
+valmistunut = False # Totuusarvo boolean (bool)
+print(etunimi, 'sai keskiarvoksi Yto-aineista', ytoaineiden_keskiarvo)
+
+
 # RAKENTEELLISET MUUTTUJAT
 #-------------------------
 
