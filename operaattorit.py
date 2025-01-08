@@ -38,7 +38,16 @@ else:
 
 sisalto = {'ohjelmointi': 'Kehitysympäristö ja ohjelmointikielet', 'ohjelmistokehittäjänä toimiminen': 'projektityöskentely, tietovarastot, versiointi ja julkaisu', 'komponenttikirjasto': 'Django, Node.js, Qt ja muut kirjastot','Sulautetut järjestelmät': 'C-ohjelmointi, Arduino ja Raspberry Pi'}
 
-kysymys = input('Minkä tutkinnon osan sisällön haluat nähdä ? ')
+while True:
+  kysymys = input('Minkä tutkinnon osan sisällön haluat nähdä ? ')
+  if kysymys == '':
+      break
+  
+  try:
+      vastaus = sisalto[kysymys]
+  except Exception as e:
+      vastaus = 'Ei semmoista tutkintoa ole olemassa'
+    
+  print(vastaus)
 
-vastaus = sisalto[kysymys]
-print(vastaus)
+
