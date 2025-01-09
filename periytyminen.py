@@ -35,7 +35,8 @@ class Person():
         ageInYears = age.days / 365
         return round(ageInYears)
         pass
-    
+    # Luokkametodi on myös staattinen, eli ei vaadi olion muodostamista
+    # Huomaa luokkaan viittaava cls, joka korvaa perinteisen self:n
     @classmethod
     def calculateAge2(cls, birthday):
         """Calculates student's corrent age in full years
