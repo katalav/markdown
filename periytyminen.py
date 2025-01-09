@@ -34,10 +34,19 @@ class Person():
         age = datetime.datetime.now() - birthDay
         ageInYears = age.days / 365
         return round(ageInYears)
-        
-    @classmethod# TÄSTÄ PUUTTUU VIDEON VIKAT 10 MIN TOINEN IÄN LASKU .
-    #TARKISTA HUOMENNA STATICMETHOD SIJOITUS
+        pass
+    
+    @classmethod
+    def calculateAge2(cls, birthday):
+        """Calculates student's corrent age in full years
 
+        Returns:
+            float: age in years
+        """
+        birthDay = datetime.datetime.fromisoformat(birthday)
+        age = datetime.datetime.now() - birthDay
+        ageInYears = age.days / 365
+        return round(ageInYears)
     
 
 # ALILUOKKA ELI LAPSILUOKKA (SUB / CHILD CLASS)
@@ -93,3 +102,5 @@ if __name__ == "__main__":
     ika = Person.calculateAge('2008-03-22')
     print(ika)
     
+ika2 = Person.calculateAge2('1978-12-10')
+print(ika2)
