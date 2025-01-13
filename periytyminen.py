@@ -12,17 +12,25 @@ from oliot import Student # Tuodaan oliot moduulista Student-luokka
 class Person():
     """common class for all persons in Raseko"""
     
-    def __init__(self, etunimi: str, sukunimi: str):
+    def __init__(self, givenname: str, surname: str):
         """Creates a Person object
 
         Args:
-            etunimi (str): A first name
-            sukunimi (str): A last name
+            givenname (str): A first name
+            surname (str): A last name
         """
-        self.etunimi = etunimi
-        self.sukunimi = sukunimi
+        self.givenName = givenname
+        self.surName = surname
+        
+    def calculateAge3(self, isoBirthday: str) -> float:#(perinteinen tapa tehdä)
+        birthday = datetime.datetime.fromisoformat(isoBirthday)
+        age = datetime.datetime.now() - birthday
+        ageInYears = age.days / 365
+        return ageInYears
+        
         # Staattinen metodi, joka laskee iän. Staattisessa metodissa ei luoda oliota lainkaan
         #vaan metodia voi käyttää suoraan luokasta käsin
+        
     @staticmethod
     def calculateAge(birthDay) -> float:
         """Calculates student's corrent age in full years
@@ -54,16 +62,16 @@ class Person():
 #----------------------------------------------
 class RasekoStudent(Person):
     """The student class, inherits The Person class"""
-    def __init__(self, etunimi: str, sukunimi: str, opiskelijanumero: str):
+    def __init__(self, givenName: str, surName: str, studentNumber: str):
         """Creates a student object
 
         Args:
-            etunimi (str): Opiskelijan etunimi
-            sukunimi (str): Opiskelijan sukunimi
-            opiskelijanumero (str): Opiskelija numero
+            givenName (str): Student's first name
+            surName (str): Student's last name
+            studentNumber (str): Student's (student number) ID
         """
-        super().__init__(etunimi, sukunimi) # Määritellääm tapahtuvaksi yliluokan mukaan
-        self.opiskelijanumero = opiskelijanumero # Ei määritelty yliluokassa
+        super().__init__(givenName, surName) # Määritellääm tapahtuvaksi yliluokan mukaan
+        self.studentNumber = studentNumber # Ei määritelty yliluokassa
         
 class RasekoTeacher(Person):
     """Creates a teacher inheriting the Person class
@@ -71,29 +79,29 @@ class RasekoTeacher(Person):
     Args:
         Person (class): Name of the super class
     """
-    def __init__(self, etunimi: str, sukunimi: str, luokat: list[str]):
+    def __init__(self, givenName: str, surName: str, groups: list[str]):
         """Constructor method for Teacher objects
 
         Args:
-            etunimi (str): Techer's given name
-            sukunimi (str): Teacher's surname
-            luokat (list[str]): List of student groups
+            givenName (str): Techer's given name
+            surName (str): Teacher's surname
+            groups (list[str]): List of student groups
         """
-        super().__init__(etunimi, sukunimi)
-        self.luokat = luokat
+        super().__init__(givenName, surName)
+        self.groups = groups
        
 
     
         
 if __name__ == "__main__":
-    rasekoStudent = RasekoStudent ('Jonne', 'Jantteri','456343')
-    print(rasekoStudent.sukunimi)
+    rasekoStudent = RasekoStudent('Jonne', 'Jantteri','456343')
+    print(rasekoStudent.givenName)
 
     
-    luokat = ['Tivi23A', 'TiVi23B', 'TiVi20ao']
-    rasekoTeacher = RasekoTeacher('Markku', 'Kynsijärvi', luokat)
+    groups = ['Tivi23A', 'TiVi23B', 'TiVi20ao']
+    rasekoTeacher = RasekoTeacher('Markku', 'Kynsijärvi', 'TiVi23A')
     
-    print(f'{rasekoTeacher.etunimi} opettaa ryhmiä {rasekoTeacher.luokat}')
+    print(f'{rasekoTeacher.givenName} opettaa ryhmiä {rasekoTeacher.groups}')
     
     # Luodaan moduulista oliot.py Student.olio
     student = Student('Tuittu Kiukkunen', 'Auto22B', '2007-10-23')
@@ -103,5 +111,9 @@ if __name__ == "__main__":
     ika = Person.calculateAge('2008-03-22')
     print(ika)
     
-ika2 = Person.calculateAge2('1978-12-10')
-print(ika2)
+    ika2 = Person.calculateAge2('1978-12-10')
+    print(ika2)
+
+    person1 = Person('Calle', 'Keckerberg')
+    ika3 = person1.calculateAge3('2009-10-22')
+    print(f'Henkilön {person1.givenName} ikä on {ika3} vuotta') 
